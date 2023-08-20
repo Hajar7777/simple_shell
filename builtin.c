@@ -1,17 +1,56 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
 * _myexit - EXITS  shell
-* @info: STRUCTURE CONTAIning POTENtial ARGUMENTS. USED TO  MAINtain
-* CONSTANT function prototype.
-* Return: EXITS wItH  GIVEN eXiT STATUS
+*
+* @info: STRUCTURE HAVing ProbAble ARGs
+*
+* Return: EXITS Using GIVEN eXiT STaTUS
 *  (0) if info.argv[0] != "exit"
 */
 int _myexit(info_t *info)
 {
 int exitcheck;
 
-if (info->argv[1])  /* IF  is AN EXIT ARGuement */
+if (info->argv[1])  /* IF happENS to be AN EXIT ARg */
 {
 exitcheck = _erratoi(info->argv[1]);
 if (exitcheck == -1)
@@ -29,18 +68,56 @@ info->err_num = -1;
 return (-2);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _mycd - CHANGES  CURrent DIRectory of  PROcess
-* @info: STRUCTURE CONTaining POTENtial ARGUments. USED to MAINtain
-* CONDTANt FUNCTion prototype.
-*  Return: Always 0
+* _mycd - CHANGES ongoing  DIR
+*
+* @info: STRUCTURE HAVing ProBablE ARGs
+*
+* Return: Always 0 ON sUCCESs
 */
 int _mycd(info_t *info)
 {
-char *s, *dir, buffer[1024];
+char *a, *dir, buffer[1024];
 int chdir_ret;
-s = getcwd(buffer, 1024);
-if (!s)
+a = getcwd(buffer, 1024);
+if (!a)
 _puts("TODO: >>getcwd failure emsg here<<\n");
 if (!info->argv[1])
 {
@@ -55,12 +132,12 @@ else if (_strcmp(info->argv[1], "-") == 0)
 {
 if (!_getenv(info, "OLDPWD="))
 {
-_puts(s);
+_puts(a);
 _putchar('\n');
 return (1);
 }
 _puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-chdir_ret = /* TODO: what should this be? */
+chdir_ret = /* TODO: what shAll this be? */
 chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 }
 else
@@ -78,11 +155,38 @@ _setenv(info, "PWD", getcwd(buffer, 1024));
 return (0);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _myhelp - CHANGES  CURrent DIREctory of  PROCess
-* @info: STRUCTURE CONtaining potENntIAL ARGUMENTS. USED to MAINtain
-* CONSTANT FUNction prototype.
-*  Return: Always 0
+* _myhelp - ULtERS ONGOing DIREctory
+*
+* @info: STRUCTURE HavIng pRobABLe ARGs
+*
+*  Return: Always 0 on SuccESS
 */
 int _myhelp(info_t *info)
 {
@@ -90,6 +194,6 @@ char **arg_array;
 arg_array = info->argv;
 _puts("help call works. Function not yet implemented \n");
 if (0)
-_puts(*arg_array); /* temp att_unused workaround */
+_puts(*arg_array); /* att_unused workAROund */
 return (0);
 }

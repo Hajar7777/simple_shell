@@ -1,7 +1,30 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* clear_info - iNItiaLIzeS info_t sTRuCT
+* clear_info - StartS info_t sTRuCT
 * @info: stRUcT adDReSs
 */
 void clear_info(info_t *info)
@@ -12,14 +35,36 @@ info->path = NULL;
 info->argc = 0;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* set_info - iNItiaLIzeS info_t STruCt
+* set_info -StartS info_t STruCt
+*
 * @info: STruCt aDDrRsS
+*
 * @av: ARgUMeNT vEcTOr
 */
 void set_info(info_t *info, char **av)
 {
-int i = 0;
+int hoot = 0;
 
 info->fname = av[0];
 if (info->arg)
@@ -35,18 +80,54 @@ info->argv[0] = _strdup(info->arg);
 info->argv[1] = NULL;
 }
 }
-for (i = 0; info->argv && info->argv[i]; i++)
+for (hoot = 0; info->argv && info->argv[hoot]; hoot++)
 ;
-info->argc = i;
+info->argc = hoot;
 replace_alias(info);
 replace_vars(info);
 }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* free_info - frEEs info_t sTRucT fIElDs
+* free_info - LiberatEs info_t sTRucT fIElDs
+*
 * @info: sTRucT aDDreSs
-* @all: tRUe If fREeINg aLL fIElDs
+*
+* @all: tRUe If LiberTinG aLL fIElDs
 */
 void free_info(info_t *info, int all)
 {

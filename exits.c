@@ -2,64 +2,136 @@
 
 /**
 **_strncpy - coPIes strINg
-*@dest:dEStiNAtIOn strINg To Be coPIed To
+*
+*@dest:dEStiNAtIOn strINg To coPy To
+*
 *@src: SOuRCe strINg
-*@n: amOUnt Of chARactERs To Be COpIEd
-*Return: cONcatENateD strINg
+*
+*@n: NUM Of chARactERs To CopY
+*
+*Return:aDDeD strINg
 */
 char *_strncpy(char *dest, char *src, int n)
 {
-int i, j;
+int iay, jou;
 char *s = dest;
-i = 0;
-while (src[i] != '\0' && i < n - 1)
+iay = 0;
+while (src[iay] != '\0' && iay < n - 1)
 {
-dest[i] = src[i];
-i++;
+dest[iay] = src[iay];
+iay++;
 }
-if (i < n)
+if (iay < n)
 {
-j = i;
-while (j < n)
+jou = iay;
+while (jou < n)
 {
-dest[j] = '\0';
-j++;
+dest[jou] = '\0';
+jou++;
 }
 }
 return (s);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-**_strncat - cONcaTEnatEs TwO strINgS
-*@dest: fIRst strINg
-*@src:seCOnd strINg
-*@n: amOUnt Of bYTes To Be mAXimALly uSEd
-*Return: cONcaTEnaTEd strINg
+**_strncat - aDDs TwO strINgS
+*
+*@dest: 1st strINg
+*
+*@src:2nd strINg
+*
+*@n: NumbER Of bYTes To uSE
+*
+*Return: aDDEd strINg
 */
 char *_strncat(char *dest, char *src, int n)
 {
-int i, j;
+int ilili, jio;
 char *s = dest;
-i = 0;
-j = 0;
-while (dest[i] != '\0')
-i++;
-while (src[j] != '\0' && j < n)
+ilili = 0;
+jio = 0;
+while (dest[ilili] != '\0')
+ilili++;
+while (src[jio] != '\0' && jio < n)
 {
-dest[i] = src[j];
-i++;
-j++;
+dest[ilili] = src[jio];
+ilili++;
+jio++;
 }
-if (j < n)
-dest[i] = '\0';
+if (jio < n)
+dest[ilili] = '\0';
 return (s);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-**_strchr - loCAteS  CHarACter In  strINg
-*@s:strINg To Be pARsed
-*@c: chARacTEr To lOOk fOr
-*Return: (s) POinTEr To  MEmoRY aREa s
+**_strchr - FinDS  CHarACter In  strINg
+*
+*@s:strINg To pARse
+*
+*@c: chARacTEr To be lOOkED fOr
+*
+*Return: POinTEr *s To  MEmoRY aREa s
 */
 char *_strchr(char *s, char c)
 {

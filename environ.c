@@ -1,10 +1,24 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _myenv - prINts  CUrrENt enVIroNMent
-* @info: STRucTUre cONtaINinG potENTial ARguMEntS. USEd To mAIntAIn
-* cONstANt fUNctIOn prototype.
-* Return: ALWAYs 0
+* _myenv - prINts The OngoinG enVIroNMent
+*
+* @info: STRucTUre HaVinG ProbablE ARgS
+*
+* Return: ALWAYs 0(SuCceSS)
 */
 int _myenv(info_t *info)
 {
@@ -12,33 +26,93 @@ print_list_str(info->env);
 return (0);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _getenv - GetS vAlUE OF ENvIrON vaRIabLE
-* @info: STRUctuRE CONtaiNINg poTEntIAl arGUmeNTs.USEd To maINtaIN
-* @name: env var NAME
+* _getenv - vAlUE OF ENvIrON vaR
 *
-* Return:VaLUe
+* @info: STRUctuRE havINg poTEntIiAl arGs
+*
+* @name: env vaRiablE NAME
+*
+* Return: VaLUe
 */
 char *_getenv(info_t *info, const char *name)
 {
 list_t *node = info->env;
-char *p;
+char *r;
 while (node)
 {
-p = starts_with(node->str, name);
-if (p && *p)
-return (p);
+r = starts_with(node->str, name);
+if (r && *r)
+return (r);
 node = node->next;
 }
 return (NULL);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _mysetenv - IniTIALize NEw enVIroNMent vaRIabLE,
-*             or modify an existing one
-* @info: Structure containing potential arguments. Used to maintain
-*        constant function prototype.
-*  Return: Always 0
+* _mysetenv - BeginnINg NEw enVIr vaR
+*
+* @info: StrUctUre HavIng pRobAble arGs
+*
+* Return: Always 0(SUCCeSS)
 */
 int _mysetenv(info_t *info)
 {
@@ -52,37 +126,99 @@ return (0);
 return (1);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _myunsetenv - ReMOve  ENvirONmeNT VAriaBLe
-* @info: StRUctURe cONTainING poTENtial arGUmeNTs. USED To mAINtaiN
-* CONStanT FUNctIOn prototype.
-*  Return: AlWAys 0
+* _myunsetenv - DeletES  ENv VAr
+* @info: StRUctURe HavING poTENtiIal arGs
+*
+* Return: 0(SucceSS)
 */
 int _myunsetenv(info_t *info)
 {
-int i;
+int kila;
 if (info->argc == 1)
 {
 _eputs("Too few arguements.\n");
 return (1);
 }
-for (i = 1; i <= info->argc; i++)
-_unsetenv(info, info->argv[i]);
+for (kila = 1; kila <= info->argc; kila++)
+_unsetenv(info, info->argv[kila]);
 return (0);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
 * populate_env_list - populate env lINKed lISt
-* @info: STrucTUre CONtainINg POTEntial ARguMENtS. USED To mAIntAIn
-*  CONSTANT  fUNctiOn prototype.
+*
+* @info: STrucTUre HavINg PrOBable ARgS
+*
 * Return: AlWAyS 0
 */
 int populate_env_list(info_t *info)
 {
 list_t *node = NULL;
-size_t i;
-for (i = 0; environ[i]; i++)
-add_node_end(&node, environ[i], 0);
+size_t ijo;
+for (ijo = 0; environ[ijo]; ijo++)
+add_node_end(&node, environ[ijo], 0);
 info->env = node;
 return (0);
 }

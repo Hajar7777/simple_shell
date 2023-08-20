@@ -1,10 +1,41 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* input_buf - bUFFeRs chAInED coMMaNdS
-* @info: parameter struct
-* @buf: address of buffer
-* @len: address of len var
+* input_buf - bUFFeRs coMMaNdS that ArE cHained
+*
+* @info: parameter strUct
+*
+* @buf: address of BUFF
+*
+* @len: address of LEN varIABLE
 *
 * Return: bytes read
 */
@@ -12,7 +43,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 ssize_t r = 0;
 size_t len_p = 0;
-if (!*len) /* if nothing left in the buffer, fill it */
+if (!*len) /* if nothing left in the buffer LOAD it */
 {
 /*bFrEE((void **)info->cmd_buf);*/
 free(*buf);
@@ -27,7 +58,7 @@ if (r > 0)
 {
 if ((*buf)[r - 1] == '\n')
 {
-(*buf)[r - 1] = '\0'; /* REmOve tRAilINg nEWlINe */
+(*buf)[r - 1] = '\0'; /* REmOve All tRAilINg nEWlINe */
 r--;
 }
 info->linecount_flag = 1;
@@ -43,15 +74,51 @@ info->cmd_buf = buf;
 return (r);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* get_input - gets a line minus the newline
-* @info: PArAMeteR stRUcT*
+* get_input - prInts a lIne
+* @info: PArAMeteR stRUcT
 * Return: bYtES rEAd
 */
 ssize_t get_input(info_t *info)
 {
 static char *buf; /* ';' coMManD chAIn BUFfeR */
-static size_t i, j, len;
+static size_t ikil, jio, len;
 ssize_t r = 0;
 char **buf_p = &(info->arg), *p;
 
@@ -61,20 +128,20 @@ if (r == -1) /* EOF */
 return (-1);
 if (len)	/* we have coMmaNdS lEFt IN  cHAiN bUFfeR */
 {
-j = i; /* iNIt NeW itERatOR To cURreNT bUF poSItIOn */
-p = buf + i; /* get pointer for return */
-check_chain(info, buf, &j, i, len);
-while (j < len) /* iTEraTe To seMIcOLon OR eND */
+jio = ikil; /* iNIt NeW itERatOR To cURreNT bUF poSItIOn */
+p = buf + ikil; /* get pointer for return */
+check_chain(info, buf, &jio, ikil, len);
+while (jio < len) /* iTEraTe To seMIcOLon OR eND */
 {
-if (is_chain(info, buf, &j))
+if (is_chain(info, buf, &jio))
 break;
-j++;
+jio++;
 }
 
-i = j + 1; /* inCReMEnT pASt nuLLeD ';'' */
-if (i >= len) /* rEAchED END oF bUFfeER? */
+ikil = jio + 1; /* inCReMEnT pASt nuLLeD ';'' */
+if (ikil >= len) /* rEAchED END oF bUFfeER? */
 {
-i = len = 0; /* rESeT pOSiTIon aNd lENgTh */
+ikil = len = 0; /* rESeT pOSiTIon aNd lENgTh */
 info->cmd_buf_type = CMD_NORM;
 }
 
@@ -86,10 +153,32 @@ return (_strlen(p)); /* return lEnGth OF CUrrENt cOMMand */
 return (r); /* return lENGth Of bUFfeR fRoM _getline() */
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
 * read_buf - rEADs  bUFFer
+*
 * @info: pARamETer sRUuct
+*
 * @buf: bUFfEr
+*
 * @i: sIZe
 *
 * Return: r
@@ -105,42 +194,63 @@ if (r >= 0)
 return (r);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _getline - gETs nEXt lINE OF INpUT fROm STDIN
-* @info: pARamETer sTRUc
-* @ptr: aDDrESs Of pOIntRr To bUFfeR, pREalLoWAtED OR NULL
-* @length: size of preallocated ptr buffer if not NULL
+* _getline - pRinTs nEXt lINE OF INpUT fROm STDIN
+*
+* @info: pARamETer sTRUct
+*
+* @ptr: aDDrESs Of pOIntRr To bUFfeR
+* pREalLoWAtED OR NULL
+*
+* @length: size of prealLOCATED ptr buffer if nOt NULL
 *
 * Return: s
 */
 int _getline(info_t *info, char **ptr, size_t *length)
 {
 static char buf[READ_BUF_SIZE];
-static size_t i, len;
-size_t k;
+static size_t ilj, len;
+size_t kad;
 ssize_t r = 0, s = 0;
 char *p = NULL, *new_p = NULL, *c;
 p = *ptr;
 if (p && length)
 s = *length;
-if (i == len)
-i = len = 0;
+if (ilj == len)
+ilj = len = 0;
 r = read_buf(info, buf, &len);
 if (r == -1 || (r == 0 && len == 0))
 return (-1);
 
-c = _strchr(buf + i, '\n');
-k = c ? 1 + (unsigned int)(c - buf) : len;
-new_p = _realloc(p, s, s ? s + k : k + 1);
+c = _strchr(buf + ilj, '\n');
+kad = c ? 1 + (unsigned int)(c - buf) : len;
+new_p = _realloc(p, s, s ? s + kad : kad + 1);
 if (!new_p) /* MALLOC FAllURE! */
 return (p ? free(p), -1 : -1);
 if (s)
-_strncat(new_p, buf + i, k - i);
+_strncat(new_p, buf + ilj, kad - ilj);
 else
-_strncpy(new_p, buf + i, k - i + 1);
+_strncpy(new_p, buf + ilj, kad - ilj + 1);
 
-s += k - i;
-i = k;
+s += kad - ilj;
+ilj = kad;
 p = new_p;
 
 if (length)
@@ -149,11 +259,37 @@ if (length)
 return (s);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
 * sigintHandler - bLOCkS ctrl-C
-* @sig_num:SIgnAL NUmbER
 *
-* Return: vOID
+* @sig_num:SIgnAL NUm
+*
+* Return: Empty
 */
 void sigintHandler(__attribute__((unused))int sig_num)
 {

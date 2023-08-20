@@ -1,81 +1,197 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-*_eputs - PRinTs INpuT stRIng
-* @str: strING To Be PRinTEd
+*_eputs - LisTs INpuT stRIng
+*
+* @str: strING To pRinT
 *
 * Return: NOThiNg
 */
 void _eputs(char *str)
 {
-int i = 0;
+int imko = 0;
 if (!str)
 return;
-while (str[i] != '\0')
+while (str[imko] != '\0')
 {
-_eputchar(str[i]);
-i++;
+_eputchar(str[imko]);
+imko++;
 }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _eputchar - WRitES  CHarACteR c To sTDErr
-* @c: CHarACtER To PRinT
+* _eputchar - LiSTs CHar c To sTDErr
 *
-* Return: ON SUccEss 1.
-* ON ERroR, -1 Is REtuRNed, ANd eRRno Is SEt aPProPrIAteLY.
+* @c: CHarACtER To be PRinTED
+*
+* Return: 1 IF SUccEss
+* -1 IF ERror & eRRno Is SEt accOrdinlY
 */
 int _eputchar(char c)
 {
-static int i;
+static int ilp;
 static char buf[WRITE_BUF_SIZE];
-if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+if (c == BUF_FLUSH || ilp >= WRITE_BUF_SIZE)
 {
-write(2, buf, i);
-i = 0;
+write(2, buf, ilp);
+ilp = 0;
 }
 if (c != BUF_FLUSH)
-buf[i++] = c;
+buf[ilp++] = c;
 return (1);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _putfd - WRitES  CHaRActER c To GIveN fd
-* @c: CHarACteR To PRinT
-* @fd:fiLEdeSCriPTor To WRiTe To
+* _putfd - PrinTs CHaRActER c To fd thaT is GivEn
 *
-* Return: ON SUccESs 1.
-* On eRRor, -1 Is reTUrNED, anD eRRno IS sEt aPProPRiaTElY.
+* @c: CHarACteR To be PRinTed
+*
+* @fd: fiLEdeSCriPTor To be WRiTten To
+*
+* Return: 1 If sUCCess
+* -1 IF ErrOR & eRRno IS sEt aCCORDINGlY
 */
 int _putfd(char c, int fd)
 {
-static int i;
+static int tiara;
 static char buf[WRITE_BUF_SIZE];
-if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+if (c == BUF_FLUSH || tiara >= WRITE_BUF_SIZE)
 {
-write(fd, buf, i);
-i = 0;
+write(fd, buf, tiara);
+tiara = 0;
 }
 if (c != BUF_FLUSH)
-buf[i++] = c;
+buf[tiara++] = c;
 return (1);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-*_putsfd - PRinTs INpuT STriNG
-* @str: STrINg To BE PRinTEd
-* @fd: FILEDEscRIpToR To WRiTe To
+*_putsfd - LisTs INpuT STriNG
+*
+* @str: STrINg To PRinT
+*
+* @fd: FILEDEscRIpToR To be WRiTten To
 *
 * Return:NUmbER of CHarS pUt
 */
 int _putsfd(char *str, int fd)
 {
-int i = 0;
+int kiko = 0;
 if (!str)
 return (0);
 while (*str)
 {
-i += _putfd(*str++, fd);
+kiko += _putfd(*str++, fd);
 }
-return (i);
+return (kiko);
 }

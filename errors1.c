@@ -1,23 +1,47 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _erratoi - cONvERts strINg To An inTEgeR
-* @s: strINg To Be COnvERtED
-* Return: 0 If No nUMbeRS iN strINg, cONveRteD nUMbeR oTHerwISe
-*       -1 on erORr
+* _erratoi - cONvERts strINg To An inT
+*
+* @s: strINg To COnvERt
+*
+* Return: 0 If No nUMbeRS iN StrING
+* -1 IF erORr
 */
 int _erratoi(char *s)
 {
-int i = 0;
+int iki = 0;
 unsigned long int result = 0;
 if (*s == '+')
-s++;  /* TODO: WHy DOes tHIs mAKe mAIn return 255? */
-for (i = 0;  s[i] != '\0'; i++)
+s++;  /* TODO: WHy DOes tHIs one mAKe mAin retUrn 255? */
+for (iki = 0;  s[iki] != '\0'; iki++)
 {
-if (s[i] >= '0' && s[i] <= '9')
+if (s[iki] >= '0' && s[iki] <= '9')
 {
 result *= 10;
-result += (s[i] - '0');
+result += (s[iki] - '0');
 if (result > INT_MAX)
 return (-1);
 }
@@ -27,12 +51,37 @@ return (-1);
 return (result);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* print_error - PRinTS eRRor mESsaGe
-* @info:PAraMEteR & REtuRN inFO STruCt
-* @estr: strING conTAINing spECiFIed ERror tYPe
-* Return: 0 If no NUMberS In strING, cONverTEd nUMber oTHerwISe
-*        -1 on eRRor
+* print_error - LisTS eRRor mESsaGe
+*
+* @info: PAraMEteR and REtuRN inFO STruCt
+*
+* @estr: strING having identifIed ERror tYPe
+*
+* Return: 0 If no NUM exisTS In strING
+* cONverTEd nUMber if NOT
+* -1 on eRRor
 */
 void print_error(info_t *info, char *estr)
 {
@@ -45,17 +94,57 @@ _eputs(": ");
 _eputs(estr);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* print_d - fUNctiON PRinTs  DEciMAl (INteGEr) NUmbEr (bASe 10)
-* @input: inPUt
-* @fd: fiLEdeSCriPTor To WRitE To
+* print_d - fUNctiON Lists DEcimal
 *
-* Return: NUMber Of CHarACteRS PRinTEd
+* @input: inPUt
+*
+* @fd: fiLEdeSCriPTor To be WRittEn To
+*
+* Return: NUMber Of CHarACteRS thaT aRE PRinTEd
 */
 int print_d(int input, int fd)
 {
 int (*__putchar)(char) = _putchar;
-int i, count = 0;
+int ipo, count = 0;
 unsigned int _abs_, current;
 if (fd == STDERR_FILENO)
 __putchar = _eputchar;
@@ -68,24 +157,47 @@ count++;
 else
 _abs_ = input;
 current = _abs_;
-for (i = 1000000000; i > 1; i /= 10)
+for (ipo = 1000000000; ipo > 1; ipo /= 10)
 {
-if (_abs_ / i)
+if (_abs_ / ipo)
 {
-__putchar('0' + current / i);
+__putchar('0' + current / ipo);
 count++;
 }
-current %= i;
+current %= ipo;
 }
 __putchar('0' + current);
 count++;
 return (count);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* convert_number - cONvERteR fUNctIOn, cLONe Of IToa
+* convert_number - cONvERteR fUNctIOn cLONe
+*
 * @num: nUMbeR
+*
 * @base: bAsE
+*
 * @flags: ARguMEnt FLagS
 *
 * Return: strING
@@ -96,40 +208,73 @@ static char *array;
 static char buffer[50];
 char sign = 0;
 char *ptr;
-unsigned long n = num;
+unsigned long b = num;
 if (!(flags & CONVERT_UNSIGNED) && num < 0)
 {
-n = -num;
+b = -num;
 sign = '-';
 }
 array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 ptr = &buffer[49];
 *ptr = '\0';
 
-do	{
-*--ptr = array[n % base];
-n /= base;
-} while (n != 0);
+do {
+*--ptr = array[b % base];
+b /= base;
+} while (b != 0);
 
 if (sign)
 *--ptr = sign;
 return (ptr);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* remove_comments - fUNCtioN REplACes FIrsT INstANce Of '#' with '\0'
-* @buf: ADdrESs Of strINg To MOdiFY
+* remove_comments - fUN changes 1st appearance Of '#' with '\0'
 *
-* Return: AlWAys 0;
+* @buf: ADdrESs Of strINg To be MOdiFied
+*
+* Return: 0 on SuccESs
 */
 void remove_comments(char *buf)
 {
-int i;
+int iak;
 
-for (i = 0; buf[i] != '\0'; i++)
-if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+for (iak = 0; buf[iak] != '\0'; iak++)
+if (buf[iak] == '#' && (!iak || buf[iak - 1] == ' '))
 {
-buf[i] = '\0';
+buf[iak] = '\0';
 break;
 }
 }

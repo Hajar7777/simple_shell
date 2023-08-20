@@ -1,10 +1,47 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* get_environ - REtuRNs  strINg aRRay cOPy Of OUr environ
-* @info: StRUctURe cONtAInINg poTEntIAl arGUmENts. UsED To MAinTAiN
-* coNStaNT fUNctIOn prototype.
-* Return: ALWays 0
+* get_environ - PrintS strINg aRRay cOPy Of environ
+*
+* @info: StRUctURe havINg pRobABle arGs
+*
+* Return: ALWays 0( SuccEss)
 */
 char **get_environ(info_t *info)
 {
@@ -17,52 +54,142 @@ info->env_changed = 0;
 return (info->environ);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _unsetenv - ReMOve ENviROnmENt vARiaBLe
-* @info: Structure containing potential arguments. Used to maintain
-*        constant function prototype.
-*  Return: 1 on delete, 0 otherwise
-* @var:strINg env var pROpERty
+* _unsetenv - DeleTes ENviROnmENt vARiaBLe
+*
+* @info: Structure HAVing probAble argS
+*
+* @var: strINg env variablE pROpERty
+*
+* Return: 1 IF deletED 0 IF NOT
 */
 int _unsetenv(info_t *info, char *var)
 {
 list_t *node = info->env;
-size_t i = 0;
-char *p;
+size_t exo = 0;
+char *x;
 
 if (!node || !var)
 return (0);
 
 while (node)
 {
-p = starts_with(node->str, var);
-if (p && *p == '=')
+x = starts_with(node->str, var);
+if (x && *x == '=')
 {
-info->env_changed = delete_node_at_index(&(info->env), i);
-i = 0;
+info->env_changed = delete_node_at_index(&(info->env), exo);
+exo = 0;
 node = info->env;
 continue;
 }
 node = node->next;
-i++;
+exo++;
 }
 return (info->env_changed);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* _setenv - InITiaLIze nEw ENviROnMEnt VAriABle,
-* OR MOdiFY  exIStINg oNe
-* @info: StRUcTUre cONtaiNIng pOTenTIal aRGUMenTS. USeD To MAINintain
-*  cONstANt fUNctIOn prototype.
-* @var: strINg env var pROpERty
-* @value:strINGg env var VAluE
-*  Return: AlwAYs 0
+* _setenv - StartS nEw ENv VAriabLe
+*
+* @info: StRUcTUre HaVIng probAble ArgS
+*
+* @var: strINg env variabLe pROpERty
+*
+* @value:strINGg env variABle VAluE
+*
+* Return: AlwAYs 0(SuccESS)
 */
 int _setenv(info_t *info, char *var, char *value)
 {
 char *buf = NULL;
 list_t *node;
-char *p;
+char *r;
 if (!var || !value)
 return (0);
 buf = malloc(_strlen(var) + _strlen(value) + 2);
@@ -74,8 +201,8 @@ _strcat(buf, value);
 node = info->env;
 while (node)
 {
-p = starts_with(node->str, var);
-if (p && *p == '=')
+r = starts_with(node->str, var);
+if (r && *r == '=')
 {
 free(node->str);
 node->str = buf;
