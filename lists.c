@@ -1,10 +1,90 @@
 #include "shell.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* add_node - ADds  nODe To sTArT Of lISt
+* add_node - ATTachEs  nODe To sTArT Of lISt
+*
 * @head: aDDreSs Of PoINtEr To hEAd nODe
+*
 * @str: str FiELd Of noDE
-* @num: nODe inDEx uSEd BY hIStORy
+*
+* @num: nODe inDEx ThAT hIStORy UsEs
 *
 * Return: sIZe oF lIsT
 */
@@ -32,10 +112,73 @@ new_head->next = *head;
 return (new_head);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* add_node_end - ADds  NoDe tO END oF ThE lISt
-* @head: adDReSs Of POinTER To hEAd nODe
+* add_node_end - AttAcHES  NoDe tO END oF ThE lISt
+*
+* @head: adDReSs Of POinTER To nODe
+*
 * @str: str FiElD Of NoDe
+*
 * @num: nOdE iNdEx uSeD By hIStoRy
 *
 * Return: sIZe Of lISt
@@ -72,37 +215,139 @@ else
 return (new_node);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* print_list_str - PrINts oNLy  str ELeMEnt oF List_t lINkeD lISt
-* @h: pOINteR To FIrSt nODe
+* print_list_str - LISts oNLy  str ELeMEnt oF List_t lINkeD lISt
+*
+* @h: pOINteR To 1st nODe
 *
 * Return: sIZe Of lISt
 */
 size_t print_list_str(const list_t *h)
 {
-size_t i = 0;
+size_t iyt = 0;
 
 while (h)
 {
 _puts(h->str ? h->str : "(nil)");
 _puts("\n");
 h = h->next;
-i++;
+iyt++;
 }
-return (i);
+return (iyt);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* delete_node_at_index - DElETes nODe aT gIVen inDEx
-* @head: aDDrESs Of POiNTer To FiRDt nODe
-* @index: InDEx Of nODe To DeLEtE
+* delete_node_at_index - REMoVEs nODe aT gIVen inDEx
 *
-* Return: 1 On sUCceSs, 0 On FaILurE
+* @head: aDDrESs Of POiNTer To FiRDt nODe
+*
+* @index: InDEx Of nODe To BE DeLEtEd
+*
+* Return: 1 IF sUCceSs
+* 0 iF  FaILurE
 */
 int delete_node_at_index(list_t **head, unsigned int index)
 {
 list_t *node, *prev_node;
-unsigned int i = 0;
+unsigned int imy = 0;
 
 if (!head || !*head)
 return (0);
@@ -118,25 +363,79 @@ return (1);
 node = *head;
 while (node)
 {
-if (i == index)
+if (imy == index)
 {
 prev_node->next = node->next;
 free(node->str);
 free(node);
 return (1);
 }
-i++;
+imy++;
 prev_node = node;
 node = node->next;
 }
 return (0);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
-* free_list - FrEEs ALl nODeS Of A lISt
+* free_list - LibeRATEs ALl nODeS Of A lISt
+*
 * @head_ptr: adDReSs Of POinTEr To hEAd nODe
 *
-* Return: vOiD
+* Return: EmpTy
 */
 void free_list(list_t **head_ptr)
 {
